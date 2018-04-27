@@ -16,3 +16,4 @@ train_batches = ImageDataGenerator().flow_from_directory(train_path, target_size
 validation_batches = ImageDataGenerator().flow_from_directory(valid_path, target_size= (144,256), classes=['street', 'property'], batch_size=32);
 test_batches = ImageDataGenerator().flow_from_directory(test_path, target_size= (144,256), classes=['street', 'property'], batch_size=32);
 
+#
