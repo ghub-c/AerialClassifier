@@ -16,9 +16,11 @@ def main(args):
     parser.add_argument('-n', '--num_images', default=10, type=int, help='Numero de imagenes a descargar')
     parser.add_argument('-d', '--directory', default='/Users/guillemmunozferran/Desktop', type=str, help='Directorio destino')
     args = parser.parse_args()
+
     query = args.search
     max_images = args.num_images
     save_directory = args.directory
+
     image_type="Action"
     query= query.split()
     query='+'.join(query)
