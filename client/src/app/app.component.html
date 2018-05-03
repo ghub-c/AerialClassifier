@@ -1,0 +1,22 @@
+<div class="container-fluid " id="main-container">
+  <div class="container-fluid navbar"></div>
+  <div class="row" id="main-row">
+    <div class="col-sm-12" id="upload-image-div">
+      <h3>Upload image</h3>
+
+      <image-upload
+        [max]="1"
+        [preview]="false"
+        [buttonCaption]="'Select Image'"
+        [dropBoxMessage]="'Drop your image here'"
+        (uploadFinished)="onUploadFinished($event)"
+        (removed)="onRemoved($event)">
+      </image-upload>
+
+      <img class="preview" *ngIf="logo" [src]="logo" alt="Preivew">
+      <br>
+      <button type="button" class="btn-success"id="upload" *ngIf="image" (click)=uploadImage()>Upload</button>
+      <h3 class="veredict" *ngIf="veredict">{{veredict}}</h3>      
+    </div>
+  </div>
+</div>
