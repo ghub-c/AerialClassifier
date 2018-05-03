@@ -1,0 +1,38 @@
+#main-container{
+    background-image: url('resources/background.jpeg');
+    height: 100vh;
+    min-width: 650px;
+}
+
+#upload-image-div{
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.veredict{
+    margin-top: 30px;
+}
+
+.navbar{
+    height: 20vh;
+}
+
+/deep/ .img-ul {
+    margin: 0 auto;
+    margin-top: 20px;
+    width:600px !important;
+}
+.preview{
+    margin-top:40px;
+    max-width: 300px;
+}
+
+#upload{
+    margin: 0 auto;
+    text-align: center;
+    margin-top:30px;
+    width: 200px;
+    height: 40px;
+    border-radius: 7px;
+}
