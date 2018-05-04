@@ -2,7 +2,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from keras.optimizers import Adam
-
+from keras.utils import plot_model
 
 #We need to split data into train, validation and test paths
 train_path = '../dataSet/training'
@@ -29,8 +29,11 @@ model.add(Dense(2, activation='softmax'))
 
 model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
 
+
+plot_model(model, to_file='model.png')
+
 model.fit_generator(train_batches, steps_per_epoch=100, validation_data=validation_batches, epochs=50, verbose=1)
 
 # Save model and weights to folder
 
-model.save_weights('./saved_models/final.h5f')
+#model.save_weights('./saved_models/final.h5f')
