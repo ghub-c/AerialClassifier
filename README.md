@@ -1,6 +1,6 @@
-# ImageClassifier
+#  AerialClassifier
 
-Implementation of CNN using Tensorflow for a ImageClassifier
+Implementation of CNN using Keras for a ImageClassifier
 
 ## How does it work?
 
@@ -12,7 +12,5 @@ In order to run the project you need:
 ```
 - Python 2.7 or 3.5
 - Tensorflow
+- Keras
 ```
-
-To avoid the warning:
-pip install h5py==2.8.0rc1
