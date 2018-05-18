@@ -2,7 +2,7 @@
   <div class="container-fluid navbar"></div>
   <div class="row" id="main-row">
     <div class="col-sm-12" id="upload-image-div">
-      <h3>Upload image</h3>
+      <h1>UPLOAD IMAGE</h1>
 
       <image-upload
         [max]="1"
@@ -15,7 +15,7 @@
 
       <img class="preview" *ngIf="logo" [src]="logo" alt="Preivew">
       <br>
-      <button type="button" class="btn-success"id="upload" *ngIf="image" (click)=uploadImage()>Upload</button>
+      <button type="button" class="btn-success"id="upload" *ngIf="image && !veredict" (click)=uploadImage()>PREDICT</button>
       <h3 class="veredict" *ngIf="veredict">{{veredict}}</h3>      
     </div>
   </div>

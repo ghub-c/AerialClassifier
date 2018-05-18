@@ -1,5 +1,8 @@
 #main-container{
-    background-image: url('resources/background.jpeg');
+    background-image: url('resources/background3.jpg');
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
     height: 100vh;
     min-width: 650px;
 }
@@ -7,7 +10,11 @@
 #upload-image-div{
     text-align: center;
     width: 100%;
-    color: white;
+}
+
+#upload-image-div h1{
+    color: #0E0B0B;
+    font-weight: bold;
 }
 
 .veredict{
@@ -15,13 +22,16 @@
 }
 
 .navbar{
-    height: 20vh;
+    height: 18vh;
 }
 
 /deep/ .img-ul {
     margin: 0 auto;
     margin-top: 20px;
     width:600px !important;
+    background-color: rgba(255, 255, 255, 0.80) !important;
+    color: black !important;
+    font-size: 18px !important;
 }
 .preview{
     margin-top:40px;
@@ -34,5 +44,7 @@
     margin-top:30px;
     width: 200px;
     height: 40px;
-    border-radius: 7px;
+    border-radius: 4px;
+    background-color: #D1D1D1 !important;
+    color: #0E0B0B;
 }
