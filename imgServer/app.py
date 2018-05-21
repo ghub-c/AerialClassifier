@@ -12,10 +12,7 @@ from scipy.misc import imread, imresize
 import numpy as np
 from operator import itemgetter
 
-import sys
-sys.path.insert(0, '/Users/guillemmunozferran/Desktop/UPC/CITIES_2/AerialClassifier/keras_code')
 
-import cnn
 
 
 UPLOAD_FOLDER = './images'
@@ -51,6 +48,7 @@ def server_info():
     # predict = model.predict_generator(test_batches, steps=10, verbose=2)
     first_class = predict[0][0]
     second_class = predict[0][1]
+    print(predict)
     print(first_class)
     print(second_class)
 
