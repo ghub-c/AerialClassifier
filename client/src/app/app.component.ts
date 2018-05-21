@@ -47,8 +47,8 @@ export class AppComponent {
     this.http.post(`http://localhost:3000/upload`, formData)
       .map((res: Response) => res.json())
       .subscribe(data => {
-        this.veredict=data.veredict;
-          console.log(data);
+          this.veredict=data;
+          console.log(this.veredict);
       });
   }
 

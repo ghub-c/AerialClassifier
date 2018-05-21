@@ -16,7 +16,8 @@
       <img class="preview" *ngIf="logo" [src]="logo" alt="Preivew">
       <br>
       <button type="button" class="btn-success"id="upload" *ngIf="image && !veredict" (click)=uploadImage()>PREDICT</button>
-      <h3 class="veredict" *ngIf="veredict">{{veredict}}</h3>      
+      <h3 class="veredict" *ngIf="veredict">{{veredict.Street}} % street</h3>
+      <h3 class="veredict" *ngIf="veredict">{{veredict.Private_propierty}} % property</h3>
     </div>
   </div>
 </div>
