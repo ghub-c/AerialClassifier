@@ -3,7 +3,6 @@ from flask import Flask, jsonify, request
 from werkzeug.utils import secure_filename
 import cv2
 from flask_cors import CORS
-from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from keras.optimizers import Adam
