@@ -1,4 +1,4 @@
-from keras.preprocessing.image import ImageDataGenerator, image
+from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from keras.optimizers import Adam
@@ -6,41 +6,41 @@ from keras.utils import plot_model
 from scipy.misc import imread, imresize
 import numpy as np
 
-def test():
 
-    #We need to split data into train, validation and test paths
-    train_path = '../dataSet/training'
-    valid_path = '../dataSet/validation'
-    test_path = '../dataSet/testing'
+#We need to split data into train, validation and test paths
+train_path = '../dataSet/training'
+valid_path = '../dataSet/validation'
+test_path = '../dataSet/testing'
 
-    #Image array is (144, 256, 3)
-    #1034, 246 and 250 images in each directory
-    train_batches = ImageDataGenerator().flow_from_directory(train_path, target_size= (144, 256), classes=['street', 'property'], batch_size=32);
-    validation_batches = ImageDataGenerator().flow_from_directory(valid_path, target_size= (144,256), classes=['street', 'property'], batch_size=32);
-    test_batches = ImageDataGenerator().flow_from_directory(test_path, target_size= (144,256), classes=['street', 'property'], batch_size=32);
+#Image array is (144, 256, 3)
+#1034, 246 and 250 images in each directory
+train_batches = ImageDataGenerator().flow_from_directory(train_path, target_size= (144, 256), classes=['street', 'property'], batch_size=32);
+validation_batches = ImageDataGenerator().flow_from_directory(valid_path, target_size= (144,256), classes=['street', 'property'], batch_size=32);
+test_batches = ImageDataGenerator().flow_from_directory(test_path, target_size= (144,256), classes=['street', 'property'], batch_size=32);
 
-    model = Sequential()
-    model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(144, 256, 3)))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(32, (3, 3), activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Flatten())
-    model.add(Dense(64, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(2, activation='softmax'))
+model = Sequential()
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(144, 256, 3)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(32, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Flatten())
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(2, activation='softmax'))
 
-    model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
+model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
 
 
-    plot_model(model, to_file='model.png')
+plot_model(model, to_file='model.png')
 
-    #model.fit_generator(train_batches, steps_per_epoch=100, validation_data=validation_batches, epochs=50, verbose=1)
+model.fit_generator(train_batches, steps_per_epoch=20, validation_data=validation_batches, epochs=10, verbose=1)
 
-    # Save model and weights to folder
+# Save model and weights to folder
 
-    model.load_weights('./saved_models/final.h5f')
-    #model.save_weights('./saved_models/final.h5f')
-    predict = model.predict_generator(test_batches, steps=10, verbose=2)
-    print(predict)
+#model.load_weights('./saved_models/final.h5f')
+model.save_weights('./saved_models/final.h5f')
+#predict = model.predict(img)
+#predict = model.predict_generator(test_batches, steps=10, verbose=2)
+#print(predict)

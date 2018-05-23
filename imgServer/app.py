@@ -1,7 +1,8 @@
-import os
 from flask import Flask, jsonify, request
+import os
 from werkzeug.utils import secure_filename
 import cv2
+import math
 from flask_cors import CORS
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
@@ -13,13 +14,14 @@ import numpy as np
 from operator import itemgetter
 
 
-
-
 UPLOAD_FOLDER = './images'
 
 app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def truncate(f, n):
+    return math.floor(f * 10 ** n) / 10 ** n
 
 @app.route("/upload", methods=['POST'])
 def server_info():
@@ -51,9 +53,13 @@ def server_info():
     print(predict)
     print(first_class)
     print(second_class)
+    Street = first_class * 100
+    Private_propierty =  second_class * 100
 
     return jsonify({
-        "veredict": "Private property"
+
+        "Street": truncate(Street, 5),
+        "Private_propierty": truncate(Private_propierty,5)
     })
 
 if __name__ == "__main__":
