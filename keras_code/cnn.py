@@ -4,8 +4,7 @@ from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from keras.optimizers import Adam
 from keras.utils import plot_model
-from scipy.misc import imread, imresize
-import numpy as np
+
 
 #We need to split data into train, validation and test paths
 train_path = '../dataSet/training'
@@ -39,4 +38,4 @@ model.fit_generator(train_batches, steps_per_epoch=100, validation_data=validati
 # Save model and weights to folder
 
 #model.load_weights('./saved_models/final.h5f')
-model.save_weights('./saved_models/final.h5f')
+model.save_weights('./saved_models/final2.h5f')
