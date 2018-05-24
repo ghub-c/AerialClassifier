@@ -18,7 +18,7 @@
         <option [value]="2">Binary classifier</option>
         <option [value]="3">Multiple classifier</option>
       </select>
-      <button type="button" class="btn-success"id="upload" *ngIf="image && !veredict.street" (click)=uploadImage()>PREDICT</button>
+      <button type="button" class="btn-success"id="upload" *ngIf="image" (click)=uploadImage()>PREDICT</button>
       <h3 class="veredict" *ngIf="veredict.street">{{veredict.street}} % street</h3>
       <h3 class="veredict" *ngIf="veredict.property">{{veredict.property}} % property</h3>
       <h3 class="veredict" *ngIf="veredict.grass">{{veredict.grass}} % grass</h3>
