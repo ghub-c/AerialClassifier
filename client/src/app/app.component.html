@@ -15,8 +15,9 @@
 
       <img class="preview" *ngIf="logo" [src]="logo" alt="Preivew">
       <select class="form-control" id ="select-classifier" [(ngModel)]="selectedOption" *ngIf="logo">
-        <option [value]="2">Binary classifier</option>
-        <option [value]="3">Multiple classifier</option>
+        <option [value]="2">Classifier 1</option>
+        <option [value]="3">Classifier 2</option>
+        <option [value]="4">Classifier 3</option>
       </select>
       <button type="button" class="btn-success"id="upload" *ngIf="image" (click)=uploadImage()>PREDICT</button>
       <h3 class="veredict" *ngIf="veredict.street">{{veredict.street}} % street</h3>

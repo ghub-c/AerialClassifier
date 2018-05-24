@@ -23,6 +23,8 @@ def truncate(f, n):
     return math.floor(f * 10 ** n) / 10 ** n
 
 def function(option):
+    if (option==4):
+        option=2
     model = Sequential()
     model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(144, 256, 3)))
     model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -48,8 +50,10 @@ def server_info():
     model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
     if (option==2):
         model.load_weights('../keras_code/saved_models/final.h5f')
-    else:
+    elif(option==3):
         model.load_weights('../keras_code/saved_models/finalMulti.h5f')
+    else:
+        model.load_weights('../keras_code/saved_models/finalweights.h5f')
     # model.save_weights('./saved_models/final.h5f')
     img = np.expand_dims(img, axis=0)
     predict = model.predict(img)
@@ -66,18 +70,18 @@ def server_info():
     Street = first_class * 100
     Private_propierty =  second_class * 100
 
-    if (option==2):
+    if (option==3):
         return jsonify({
 
             "street": truncate(Street, 5),
-            "property": truncate(Private_propierty,5)
+            "property": truncate(Private_propierty,5),
+            "grass": truncate(Grass,5)
         })
     else:
         return jsonify({
 
             "street": truncate(Street, 5),
-            "property": truncate(Private_propierty, 5),
-            "grass": truncate(Grass,5)
+            "property": truncate(Private_propierty, 5)
         })
 
 if __name__ == "__main__":
