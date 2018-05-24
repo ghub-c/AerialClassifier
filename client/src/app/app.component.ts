@@ -11,7 +11,8 @@ export class AppComponent {
 
   image: any;
   logo: any;
-  veredict;
+  selectedOption:any=2;
+  veredict={};
 
   constructor(private http: Http) {
 
@@ -35,7 +36,8 @@ export class AppComponent {
   onRemoved(event) {
     this.logo = null;
     this.image = null;
-    this.veredict = null;
+    this.veredict = {};
+    this.selectedOption=2;
   }
 
   uploadImage() {
@@ -44,12 +46,16 @@ export class AppComponent {
     files[0] = this.image;
 
     formData.append("uploads[]", files[0], files[0]['name']);
-    this.http.post(`http://localhost:3000/upload`, formData)
+    const mssg ={
+      image:formData,
+      option:this.selectedOption
+    }
+    this.http.post(`http://localhost:3000/upload?option=`+this.selectedOption, formData)
       .map((res: Response) => res.json())
       .subscribe(data => {
           this.veredict=data;
-          console.log(this.veredict);
       });
+      console.log(formData)
   }
 
 }
