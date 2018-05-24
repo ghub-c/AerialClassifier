@@ -40,18 +40,16 @@ def function(option):
 def server_info():
     image = request.files['uploads[]']
     option=int(request.args.get('option'))
-    print "option"
-    print option
     filename = secure_filename(image.filename)
     image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     img=cv2.imread('./images/'+filename)
 
     model=function(option)
-    print "Aqui tambien"
-    model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc']) 
-    print "Aqui parece hh"
-    model.load_weights('../keras_code/saved_models/final.h5f')
-    print "Aqui parece que tambien"
+    model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
+    if (option==2):
+        model.load_weights('../keras_code/saved_models/final.h5f')
+    else:
+        model.load_weights('../keras_code/saved_models/finalMulti.h5f')
     # model.save_weights('./saved_models/final.h5f')
     img = np.expand_dims(img, axis=0)
     predict = model.predict(img)
@@ -61,14 +59,26 @@ def server_info():
     print(predict)
     print(first_class)
     print(second_class)
+    if (option==3):
+        third_class=predict[0][2]
+        Grass=third_class * 100
+
     Street = first_class * 100
     Private_propierty =  second_class * 100
 
-    return jsonify({
+    if (option==2):
+        return jsonify({
 
-        "street": truncate(Street, 5),
-        "property": truncate(Private_propierty,5)
-    })
+            "street": truncate(Street, 5),
+            "property": truncate(Private_propierty,5)
+        })
+    else:
+        return jsonify({
+
+            "street": truncate(Street, 5),
+            "property": truncate(Private_propierty, 5),
+            "grass": truncate(Grass,5)
+        })
 
 if __name__ == "__main__":
     app.run(port=3000)
