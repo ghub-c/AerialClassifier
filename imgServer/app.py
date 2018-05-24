@@ -22,13 +22,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def truncate(f, n):
     return math.floor(f * 10 ** n) / 10 ** n
 
-@app.route("/upload", methods=['POST'])
-def server_info():
-    image = request.files['uploads[]']
-    filename = secure_filename(image.filename)
-    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    img=cv2.imread('./images/'+filename)
-
+def function(option):
     model = Sequential()
     model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(144, 256, 3)))
     model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -39,10 +33,25 @@ def server_info():
     model.add(Flatten())
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.5))
-    model.add(Dense(2, activation='softmax'))
+    model.add(Dense(option, activation='softmax'))
+    return model
 
-    model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
+@app.route("/upload", methods=['POST'])
+def server_info():
+    image = request.files['uploads[]']
+    option=int(request.args.get('option'))
+    print "option"
+    print option
+    filename = secure_filename(image.filename)
+    image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    img=cv2.imread('./images/'+filename)
+
+    model=function(option)
+    print "Aqui tambien"
+    model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc']) 
+    print "Aqui parece hh"
     model.load_weights('../keras_code/saved_models/final.h5f')
+    print "Aqui parece que tambien"
     # model.save_weights('./saved_models/final.h5f')
     img = np.expand_dims(img, axis=0)
     predict = model.predict(img)
@@ -57,8 +66,8 @@ def server_info():
 
     return jsonify({
 
-        "Street": truncate(Street, 5),
-        "Private_propierty": truncate(Private_propierty,5)
+        "street": truncate(Street, 5),
+        "property": truncate(Private_propierty,5)
     })
 
 if __name__ == "__main__":
