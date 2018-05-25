@@ -19,6 +19,8 @@ app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
+
 def truncate(f, n):
     return math.floor(f * 10 ** n) / 10 ** n
 
