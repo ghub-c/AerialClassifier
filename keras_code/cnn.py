@@ -27,6 +27,7 @@ model.add(Flatten())
 model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2, activation='softmax'))
+print(model.summary())
 
 model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['acc'])
 
@@ -38,4 +39,4 @@ model.fit_generator(train_batches, steps_per_epoch=100, validation_data=validati
 # Save model and weights to folder
 
 #model.load_weights('./saved_models/final.h5f')
-model.save_weights('./saved_models/final2.h5f')
+#model.save_weights('./saved_models/final2.h5f')

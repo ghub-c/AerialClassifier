@@ -5,7 +5,9 @@ from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from keras.optimizers import Adam
 from keras.utils import plot_model
 
-#We need to split data into train, validation and test paths
+#We need to split data into train and validation paths
+#Output is encoded in 3 classes now: We have divided private property into grass and house photos
+
 train_path = './bigdataSet/training'
 valid_path = './bigdataSet/validation'
 
