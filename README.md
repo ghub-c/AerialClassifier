@@ -1,6 +1,6 @@
 #  AerialClassifier
 
-Implementation of CNN using Keras for a ImageClassifier. We use a similar model as the one exposed by Yann Le Cun. A triple stack of Conv + MaxPool layers, a Flatten layer previous to the Dense (64) layer, a Dropout of 50% and a final Dense layer with a Softmax function at the end. Conv layers use ReLu activaction functions and we use the last version of the Adam optimizer.
+Implementation of CNN using Keras for a ImageClassifier. We use a similar model as the one exposed by Yann Le Cun. A triple stack of Conv + MaxPool layers, a Flatten layer previous to the Dense (64) layer, a Dropout of 50% and a final Dense layer with a Softmax function of two encoded classes. Conv and Dense (64) layers use ReLu activaction functions and we use the last version of the Adam optimizer for compiling.
 
 ## How does it work?
 
